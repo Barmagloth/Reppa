@@ -54,6 +54,9 @@ class TicTacToe:
                                   command=root.quit, font=self.button_font,
                                   bg='#e74c3c', fg='white', relief='flat',
                                   padx=20, pady=5, cursor='hand2')
+
+        # Кнопки видны сразу
+        self.restart_btn.pack(side='left', padx=5)
         self.quit_btn.pack(side='right', padx=5)
 
         # Игровое состояние
@@ -169,7 +172,6 @@ class TicTacToe:
         if self.check_winner():
             self.scores[self.current_player] += 1
             self.running = False
-            self.restart_btn.pack(side='left', padx=5)
             self.score_label.config(text=self.get_score_text())
             return
 
@@ -177,7 +179,6 @@ class TicTacToe:
             self.status.config(text="Ничья!")
             self.scores['ties'] += 1
             self.running = False
-            self.restart_btn.pack(side='left', padx=5)
             self.score_label.config(text=self.get_score_text())
             return
 
@@ -225,7 +226,6 @@ class TicTacToe:
         self.current_player = 'X'
         self.status.config(text="Ход: X")
         self.running = True
-        self.restart_btn.pack_forget()
         self.draw_grid()
 
 
