@@ -37,7 +37,7 @@ class TicTacToe:
         self.canvas.pack(padx=3, pady=3)
 
         # Статус
-        self.status = tk.Label(root, text="🎯 Ход: X", font=self.status_font,
+        self.status = tk.Label(root, text="Ход: X", font=self.status_font,
                                fg=TEXT_COLOR, bg=BG_COLOR)
         self.status.pack(pady=10)
 
@@ -72,7 +72,7 @@ class TicTacToe:
         self.canvas.bind('<Motion>', self.handle_hover)
 
     def get_score_text(self):
-        return f"📊 X: {self.scores['X']} | O: {self.scores['O']} | Ничьи: {self.scores['ties']}"
+        return f"X: {self.scores['X']} | O: {self.scores['O']} | Ничьи: {self.scores['ties']}"
 
     def draw_grid(self):
         self.canvas.delete('all')
@@ -174,7 +174,7 @@ class TicTacToe:
             return
 
         if all(all(cell is not None for cell in row) for row in self.board):
-            self.status.config(text="🤝 Ничья!")
+            self.status.config(text="Ничья!")
             self.scores['ties'] += 1
             self.running = False
             self.restart_btn.pack(side='left', padx=5)
@@ -182,8 +182,7 @@ class TicTacToe:
             return
 
         self.current_player = 'O' if self.current_player == 'X' else 'X'
-        player_emoji = '❌' if self.current_player == 'X' else '⭕'
-        self.status.config(text=f"🎯 Ход: {player_emoji} {self.current_player}")
+        self.status.config(text=f"Ход: {self.current_player}")
 
     def check_winner(self):
         lines = []
@@ -200,8 +199,7 @@ class TicTacToe:
         for line in lines:
             values = [self.board[r][c] for r, c in line]
             if values[0] is not None and all(v == values[0] for v in values):
-                winner_emoji = '🎉❌' if values[0] == 'X' else '🎉⭕'
-                self.status.config(text=f"{winner_emoji} {values[0]} ПОБЕДИЛ!")
+                self.status.config(text=f"{values[0]} ПОБЕДИЛ!")
                 self.draw_win_line(line)
                 return True
         return False
@@ -225,7 +223,7 @@ class TicTacToe:
     def restart(self):
         self.board = [[None] * BOARD_SIZE for _ in range(BOARD_SIZE)]
         self.current_player = 'X'
-        self.status.config(text="🎯 Ход: ❌ X")
+        self.status.config(text="Ход: X")
         self.running = True
         self.restart_btn.pack_forget()
         self.draw_grid()
