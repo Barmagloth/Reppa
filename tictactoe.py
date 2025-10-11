@@ -147,7 +147,7 @@ class TicTacToe:
         row = event.y // CELL_SIZE
         col = event.x // CELL_SIZE
 
-        if (row < BOARD_SIZE and col < BOARD_SIZE and
+        if (0 <= row < BOARD_SIZE and 0 <= col < BOARD_SIZE and
                 self.board[row][col] is None):
             self.canvas.configure(cursor='hand2')
             # Можно добавить подсветку клетки
@@ -161,7 +161,7 @@ class TicTacToe:
         row = event.y // CELL_SIZE
         col = event.x // CELL_SIZE
 
-        if (row >= BOARD_SIZE or col >= BOARD_SIZE or
+        if (row < 0 or col < 0 or row >= BOARD_SIZE or col >= BOARD_SIZE or
                 self.board[row][col] is not None):
             return
 
